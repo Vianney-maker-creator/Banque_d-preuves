@@ -6,329 +6,7 @@
     <title>Banque d'Épreuves Génie Civil - ENSTP/UNSTIM Abomey</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Variables CSS pour un thème cohérent */
-        :root {
-            --primary-color: #2C3E50; /* Bleu foncé/Gris acier, couleur principale */
-            --secondary-color: #3498DB; /* Bleu éclatant, couleur d'accent */
-            --accent-color: #E74C3C; /* Rouge brique/sécurité, pour les mises en évidence */
-            --text-light: #ECF0F1; /* Texte clair pour les fonds sombres */
-            --text-dark: #2C3E50; /* Texte foncé pour les fonds clairs */
-            --bg-light: #F8F9FA; /* Fond très clair */
-            --bg-medium: #EFF2F5; /* Fond légèrement grisé */
-            --border-color: #DDE2E7; /* Couleur des bordures */
-            --shadow-light: rgba(0, 0, 0, 0.1);
-            --shadow-medium: rgba(0, 0, 0, 0.2);
-            --transition-speed: 0.3s;
-        }
-
-        /* Styles de base */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-            scroll-behavior: smooth; /* Défilement doux vers les ancres */
-        }
-
-        /* En-tête */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: var(--text-light);
-            padding: 60px 0;
-            text-align: center;
-            box-shadow: 0 6px 12px var(--shadow-medium);
-            position: relative;
-            overflow: hidden;
-        }
-
-        header h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 1;
-        }
-
-        header p {
-            font-size: 1.3em;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Effet visuel dans l'en-tête (grille de chantier) */
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Construction_Site_Grid_Pattern.svg/1200px-Construction_Site_Grid_Pattern.svg.png') repeat; /* Exemple de motif de grille */
-            background-size: 50px;
-            opacity: 0.05;
-            z-index: 0;
-        }
-
-        /* Barre de navigation */
-        nav {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            padding: 15px 0;
-            text-align: center;
-            box-shadow: 0 3px 6px var(--shadow-light);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            padding: 12px 25px;
-            margin: 0 8px;
-            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
-            border-radius: 5px;
-            font-weight: 500;
-            display: inline-block; /* Pour l'alignement et le padding */
-        }
-
-        nav a:hover, nav a.active {
-            background-color: var(--secondary-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Conteneur principal */
-        .container {
-            width: 90%;
-            max-width: 1300px; /* Légèrement plus large */
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        /* Sections des années */
-        section {
-            background-color: white;
-            padding: 40px;
-            margin-bottom: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px var(--shadow-light);
-            position: relative; /* Pour le background-image et l'overlay */
-            overflow: hidden;
-            border-left: 8px solid var(--secondary-color); /* Bordure plus prononcée */
-        }
-
-        /* Overlay pour le texte lisible sur l'image de fond */
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4); /* Ombre sombre */
-            z-index: 1;
-        }
-
-        /* Images de fond pour chaque section */
-        #annee1 {
-            background-image: url('https://images.pexels.com/photos/1709003/pexels-photo-1709003.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Ex: Fond de plan de construction */
-            background-size: cover;
-            background-position: center;
-            color: var(--text-light); /* Texte clair sur fond sombre */
-        }
-        #annee1::before { background-color: rgba(0, 0, 0, 0.5); } /* Overlay plus sombre pour les fonds clairs */
-
-        #annee2 {
-            background-image: url('./images/fond_annee1.png'); /* Ex: Chantier avec grue */
-            background-size: cover;
-            background-position: center;
-            color: var(--text-light);
-        }
-        #annee2::before { background-color: rgba(0, 0, 0, 0.5); }
-
-        #annee3 {
-            background-image: url('./images/fond_annee2.png'); /* Ex: Vue aérienne de construction */
-            background-size: cover;
-            background-position: center;
-            color: var(--text-light);
-        }
-        #annee3::before { background-color: rgba(0, 0, 0, 0.5); }
-
-
-        /* Contenu des sections au-dessus de l'overlay */
-        section > * {
-            position: relative;
-            z-index: 2;
-        }
-
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--accent-color); /* Couleur rouge pour les titres de section */
-            border-bottom: 3px solid var(--secondary-color); /* Bordure du titre */
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            display: flex;
-            align-items: center;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-        }
-
-        h2 i {
-            margin-right: 15px;
-            color: var(--text-light);
-            font-size: 1.1em;
-            background-color: var(--secondary-color);
-            padding: 10px;
-            border-radius: 50%;
-        }
-
-        p {
-            margin-bottom: 20px;
-            font-size: 1.1em;
-        }
-
-        /* Liste des épreuves */
-        .subject-list { /* Nouvelle classe pour la liste */
-            list-style: none;
-            padding: 0;
-            display: grid; /* Utilisation de CSS Grid pour une meilleure disposition */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2 ou 3 colonnes sur grands écrans */
-            gap: 20px; /* Espacement entre les cartes */
-        }
-
-        .subject-item { /* Nouvelle classe pour chaque élément de matière */
-            background-color: rgba(255, 255, 255, 0.95); /* Fond blanc semi-transparent */
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border-top: 5px solid var(--secondary-color); /* Bordure supérieure */
-            color: var(--text-dark); /* S'assure que le texte est sombre sur le fond clair de l'élément */
-        }
-
-        .subject-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px var(--shadow-medium);
-        }
-
-        .subject-item strong {
-            font-size: 1.2em;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .subject-item span {
-            font-size: 0.95em;
-            color: #555;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .subject-item .links {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            flex-wrap: wrap; /* Pour les petits écrans */
-        }
-
-        .subject-item a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 10px 15px;
-            border: 2px solid var(--secondary-color);
-            border-radius: 8px;
-            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
-            white-space: nowrap; /* Empêche le texte de se couper */
-            font-size: 0.9em;
-        }
-
-        .subject-item a:hover {
-            background-color: var(--secondary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .subject-item a i {
-            font-size: 1.1em;
-        }
-
-        /* Pied de page */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            margin-top: 50px;
-            box-shadow: 0 -5px 15px var(--shadow-medium);
-            font-size: 0.95em;
-            background-image: url('https://raw.githubusercontent.com/Vianney-maker-creator/Banque_d-preuves/main/footer_pattern.png'); /* Exemple de motif pour le pied de page */
-            background-size: 100px;
-            opacity: 0.9;
-        }
-
-        footer p {
-            margin: 5px 0;
-        }
-
-        /* Styles responsives */
-        @media (max-width: 992px) {
-            header h1 { font-size: 3em; }
-            header p { font-size: 1.1em; }
-            nav a { padding: 10px 20px; margin: 0 5px; }
-            h2 { font-size: 2em; }
-            .subject-list {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajustement pour tablettes */
-                gap: 15px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header { padding: 40px 0; }
-            header h1 { font-size: 2.5em; }
-            header p { font-size: 1em; }
-            nav { display: flex; flex-wrap: wrap; justify-content: center; }
-            nav a { flex-basis: 45%; margin: 5px; padding: 10px; }
-            .container { width: 95%; padding: 0 10px; margin: 20px auto; }
-            section { padding: 25px; margin-bottom: 25px; }
-            h2 { font-size: 1.8em; }
-            .subject-list {
-                grid-template-columns: 1fr; /* Une seule colonne sur mobile */
-                gap: 15px;
-            }
-            .subject-item {
-                padding: 20px;
-            }
-            .subject-item .links {
-                flex-direction: column;
-                gap: 8px;
-            }
-            .subject-item a {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header h1 { font-size: 2em; }
-            header p { font-size: 0.9em; }
-            h2 { font-size: 1.6em; }
-            h2 i { margin-right: 10px; padding: 8px; font-size: 0.9em; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -336,235 +14,239 @@
         <p>ENSTP / UNSTIM Abomey - Votre ressource académique essentielle</p>
     </header>
 
-    <nav>
-        <a href="#annee1">Licence 1</a>
-        <a href="#annee2">Licence 2</a>
-        <a href="#annee3">Licence 3</a>
+    <nav class="tabs-nav">
+        <a class="tab-link active" data-tab="annee1">Licence 1</a>
+        <a class="tab-link" data-tab="annee2">Licence 2</a>
+        <a class="tab-link" data-tab="annee3">Licence 3</a>
     </nav>
 
     <div class="container">
-        <section id="annee1">
-            <h2><i class="fas fa-ruler-combined"></i> Première Année de Licence (L1)</h2>
-            <p>Découvrez les fondamentaux du Génie Civil avec les épreuves et corrections de la première année. Une base solide pour votre parcours !</p>
-            <ul class="subject-list">
-                <li class="subject-item">
-                    <strong>Mathématiques Générales</strong>
-                    <span>Contrôle Continu 1 (2023)</span>
-                    <div class="links">
-                        <a href="/epreuves/L1_MathsGen_CC1_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L1_MathsGen_CC1_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Physique Appliquée</strong>
-                    <span>Examen de Fin de Semestre (2022)</span>
-                    <div class="links">
-                        <a href="/epreuves/L1_PhysiqueApp_Examen_2022_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L1_PhysiqueApp_Examen_2022_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Chimie des Matériaux</strong>
-                    <span>Travaux Pratiques (2024)</span>
-                    <div class="links">
-                        <a href="/epreuves/L1_ChimieMat_TP_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L1_ChimieMat_TP_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Dessin Technique & DAO</strong>
-                    <span>Projet Individuel (2023)</span>
-                    <div class="links">
-                        <a href="/epreuves/L1_DessinDAO_Projet_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L1_DessinDAO_Projet_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Informatique & Programmation</strong>
-                    <span>Contrôle Final (2024)</span>
-                    <div class="links">
-                        <a href="/epreuves/L1_InfoProg_CF_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L1_InfoProg_CF_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Géologie Générale</strong>
-                    <span>Examen Partiel (2023)</span>
-                    <div class="links">
-                        <a href="/epreuves/L1_Geologie_Partiel_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L1_Geologie_Partiel_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-            </ul>
+        <section id="annee1" class="tab-content active">
+            <div class="content-wrapper">
+                <h2><i class="fas fa-ruler-combined"></i> Première Année de Licence (L1)</h2>
+                <p>Découvrez les fondamentaux du Génie Civil avec les épreuves et corrections de la première année. Une base solide pour votre parcours !</p>
+                <ul class="subject-list">
+                    <li class="subject-item">
+                        <strong>Mathématiques Générales</strong>
+                        <span>Contrôle Continu 1 (2023)</span>
+                        <div class="links">
+                            <a href="/epreuves/L1_MathsGen_CC1_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L1_MathsGen_CC1_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Physique Appliquée</strong>
+                        <span>Examen de Fin de Semestre (2022)</span>
+                        <div class="links">
+                            <a href="/epreuves/L1_PhysiqueApp_Examen_2022_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L1_PhysiqueApp_Examen_2022_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Chimie des Matériaux</strong>
+                        <span>Travaux Pratiques (2024)</span>
+                        <div class="links">
+                            <a href="/epreuves/L1_ChimieMat_TP_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L1_ChimieMat_TP_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Dessin Technique & DAO</strong>
+                        <span>Projet Individuel (2023)</span>
+                        <div class="links">
+                            <a href="/epreuves/L1_DessinDAO_Projet_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L1_DessinDAO_Projet_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Informatique & Programmation</strong>
+                        <span>Contrôle Final (2024)</span>
+                        <div class="links">
+                            <a href="/epreuves/L1_InfoProg_CF_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L1_InfoProg_CF_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Géologie Générale</strong>
+                        <span>Examen Partiel (2023)</span>
+                        <div class="links">
+                            <a href="/epreuves/L1_Geologie_Partiel_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L1_Geologie_Partiel_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                     <li class="subject-item">
+                        <strong>Expression Française & Communication</strong>
+                        <span>Projet de communication (2024)</span>
+                        <div class="links">
+                            <a href="/epreuves/L1_ExprFranc_Projet_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L1_ExprFranc_Projet_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Anglais Technique</strong>
+                        <span>Contrôle Continu (2023)</span>
+                        <div class="links">
+                            <a href="/epreuves/L1_AnglaisTech_CC_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L1_AnglaisTech_CC_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </section>
 
-        <section id="annee2">
-            <h2><i class="fas fa-cubes"></i> Deuxième Année de Licence (L2)</h2>
-            <p>Passez au niveau supérieur avec les épreuves et corrections des matières fondamentales de la deuxième année. Maîtrisez les concepts clés du Génie Civil !</p>
-            <ul class="subject-list">
-                <li class="subject-item">
-                    <strong>Résistance des Matériaux (RDM)</strong>
-                    <span>Examen de Fin d'Année (2024)</span>
-                    <div class="links">
-                        <a href="/epreuves/L2_RDM_Examen_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L2_RDM_Examen_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Topographie</strong>
-                    <span>Travaux Pratiques (2023)</span>
-                    <div class="links">
-                        <a href="/epreuves/L2_Topographie_TP_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L2_Topographie_TP_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Géotechnique</strong>
-                    <span>Contrôle Continu 1 (2024)</span>
-                    <div class="links">
-                        <a href="/epreuves/L2_Geotechnique_CC1_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L2_Geotechnique_CC1_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Hydraulique Générale</strong>
-                    <span>Examen de Semestre (2023)</span>
-                    <div class="links">
-                        <a href="/epreuves/L2_Hydraulique_Examen_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L2_Hydraulique_Examen_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Matériaux de Construction</strong>
-                    <span>Projet de Groupe (2024)</span>
-                    <div class="links">
-                        <a href="/epreuves/L2_MateriauxConst_Projet_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L2_MateriauxConst_Projet_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Calcul des Structures</strong>
-                    <span>Contrôle Final (2022)</span>
-                    <div class="links">
-                        <a href="/epreuves/L2_CalcStructures_CF_2022_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L2_CalcStructures_CF_2022_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-            </ul>
+        <section id="annee2" class="tab-content">
+            <div class="content-wrapper">
+                <h2><i class="fas fa-cubes"></i> Deuxième Année de Licence (L2)</h2>
+                <p>Passez au niveau supérieur avec les épreuves et corrections des matières fondamentales de la deuxième année. Maîtrisez les concepts clés du Génie Civil !</p>
+                <ul class="subject-list">
+                    <li class="subject-item">
+                        <strong>Résistance des Matériaux (RDM)</strong>
+                        <span>Examen de Fin d'Année (2024)</span>
+                        <div class="links">
+                            <a href="/epreuves/L2_RDM_Examen_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L2_RDM_Examen_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Topographie</strong>
+                        <span>Travaux Pratiques (2023)</span>
+                        <div class="links">
+                            <a href="/epreuves/L2_Topographie_TP_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L2_Topographie_TP_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Géotechnique</strong>
+                        <span>Contrôle Continu 1 (2024)</span>
+                        <div class="links">
+                            <a href="/epreuves/L2_Geotechnique_CC1_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L2_Geotechnique_CC1_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Hydraulique Générale</strong>
+                        <span>Examen de Semestre (2023)</span>
+                        <div class="links">
+                            <a href="/epreuves/L2_Hydraulique_Examen_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L2_Hydraulique_Examen_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Matériaux de Construction</strong>
+                        <span>Projet de Groupe (2024)</span>
+                        <div class="links">
+                            <a href="/epreuves/L2_MateriauxConst_Projet_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L2_MateriauxConst_Projet_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Calcul des Structures</strong>
+                        <span>Contrôle Final (2022)</span>
+                        <div class="links">
+                            <a href="/epreuves/L2_CalcStructures_CF_2022_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L2_CalcStructures_CF_2022_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                     <li class="subject-item">
+                        <strong>Mécanique des Fluides</strong>
+                        <span>Examen (2024)</span>
+                        <div class="links">
+                            <a href="/epreuves/L2_MecaniqueFluides_Examen_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L2_MecaniqueFluides_Examen_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Statistique & Probabilité</strong>
+                        <span>Contrôle Continu (2023)</span>
+                        <div class="links">
+                            <a href="/epreuves/L2_StatsProba_CC_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L2_StatsProba_CC_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </section>
 
-        <section id="annee3">
-            <h2><i class="fas fa-city"></i> Troisième Année de Licence (L3)</h2>
-            <p>Affirmez votre expertise avec les épreuves et corrections de la troisième année. Préparez-vous à devenir des professionnels du Génie Civil !</p>
-            <ul class="subject-list">
-                <li class="subject-item">
-                    <strong>Structure en Béton Armé</strong>
-                    <span>Projet de Conception (2024)</span>
-                    <div class="links">
-                        <a href="/epreuves/L3_BétonArmé_Projet_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L3_BétonArmé_Projet_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Hydraulique Urbaine & Assainissement</strong>
-                    <span>Contrôle Continu 2 (2023)</span>
-                    <div class="links">
-                        <a href="/epreuves/L3_HydrauliqueUrb_CC2_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L3_HydrauliqueUrb_CC2_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Gestion de Projet de Construction</strong>
-                    <span>Examen Final (2024)</span>
-                    <div class="links">
-                        <a href="/epreuves/L3_GestionProjet_Examen_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L3_GestionProjet_Examen_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Travaux Publics & Routes</strong>
-                    <span>Cas Pratique (2023)</span>
-                    <div class="links">
-                        <a href="/epreuves/L3_TP_Routes_CasPratique_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L3_TP_Routes_CasPratique_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Aménagement du Territoire</strong>
-                    <span>Exposé & Discussion (2024)</span>
-                    <div class="links">
-                        <a href="/epreuves/L3_AmenagementTerritoire_Expose_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L3_AmenagementTerritoire_Expose_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-                <li class="subject-item">
-                    <strong>Économie de la Construction</strong>
-                    <span>Étude de Cas (2023)</span>
-                    <div class="links">
-                        <a href="/epreuves/L3_EcoConst_EtudeCas_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
-                        <a href="/corrections/L3_EcoConst_EtudeCas_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
-                    </div>
-                </li>
-            </ul>
+        <section id="annee3" class="tab-content">
+            <div class="content-wrapper">
+                <h2><i class="fas fa-city"></i> Troisième Année de Licence (L3)</h2>
+                <p>Affirmez votre expertise avec les épreuves et corrections de la troisième année. Préparez-vous à devenir des professionnels du Génie Civil !</p>
+                <ul class="subject-list">
+                    <li class="subject-item">
+                        <strong>Structure en Béton Armé</strong>
+                        <span>Projet de Conception (2024)</span>
+                        <div class="links">
+                            <a href="/epreuves/L3_BétonArmé_Projet_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L3_BétonArmé_Projet_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Hydraulique Urbaine & Assainissement</strong>
+                        <span>Contrôle Continu 2 (2023)</span>
+                        <div class="links">
+                            <a href="/epreuves/L3_HydrauliqueUrb_CC2_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L3_HydrauliqueUrb_CC2_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Gestion de Projet de Construction</strong>
+                        <span>Examen Final (2024)</span>
+                        <div class="links">
+                            <a href="/epreuves/L3_GestionProjet_Examen_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L3_GestionProjet_Examen_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Travaux Publics & Routes</strong>
+                        <span>Cas Pratique (2023)</span>
+                        <div class="links">
+                            <a href="/epreuves/L3_TP_Routes_CasPratique_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L3_TP_Routes_CasPratique_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Aménagement du Territoire</strong>
+                        <span>Exposé & Discussion (2024)</span>
+                        <div class="links">
+                            <a href="/epreuves/L3_AmenagementTerritoire_Expose_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L3_AmenagementTerritoire_Expose_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Économie de la Construction</strong>
+                        <span>Étude de Cas (2023)</span>
+                        <div class="links">
+                            <a href="/epreuves/L3_EcoConst_EtudeCas_2023_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L3_EcoConst_EtudeCas_2023_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Projet de Fin d'Études (PFE)</strong>
+                        <span>Soutenance Publique (2025)</span>
+                        <div class="links">
+                            <a href="/epreuves/L3_PFE_Soutenance_2025_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L3_PFE_Soutenance_2025_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                    <li class="subject-item">
+                        <strong>Droit de la Construction</strong>
+                        <span>Contrôle Final (2024)</span>
+                        <div class="links">
+                            <a href="/epreuves/L3_DroitConst_CF_2024_Epreuve.pdf" download><i class="fas fa-file-pdf"></i> Épreuve</a>
+                            <a href="/corrections/L3_DroitConst_CF_2024_Correction.pdf" download><i class="fas fa-check-circle"></i> Correction</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </section>
     </div>
 
     <footer>
         <p>&copy; 2025 ENSTP/UNSTIM Abomey - Licence Génie Civil. Tous droits réservés.</p>
         <p>Construire l'avenir, une épreuve à la fois.</p>
-        <p>Conçu par un étudiant passionné du Génie Civil.</p>
+        <p>Contact Administrateur : <a href="mailto:vianneyadjibode04@gmail.com">vianneyadjibode04@gmail.com</a></p>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('nav a');
-            const sections = document.querySelectorAll('section[id]');
-
-            // Fonction pour mettre à jour la classe active des liens de navigation
-            function updateActiveNavLink() {
-                let currentSectionId = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - nav.offsetHeight - 20; // Ajuste le seuil de défilement
-                    const sectionBottom = sectionTop + section.offsetHeight;
-
-                    if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
-                        currentSectionId = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${currentSectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            // Gérer le clic sur les liens de navigation (défilement doux)
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-                    const navHeight = document.querySelector('nav').offsetHeight;
-                    const offsetTop = targetSection.offsetTop - navHeight; // Compense la hauteur de la nav sticky
-
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-
-                    // Mettre à jour la classe active immédiatement après le clic
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            // Gérer la classe active au défilement
-            window.addEventListener('scroll', updateActiveNavLink);
-            // Appeler au chargement pour définir la section active initiale
-            updateActiveNavLink();
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
