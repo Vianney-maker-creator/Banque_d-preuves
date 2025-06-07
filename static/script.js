@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
     tabLinks.forEach(link => {
         link.addEventListener('click', function(event) {
             event.preventDefault(); // Empêche le comportement par défaut du lien (rechargement de page/ancres)
-            const tabId = this.dataset.tab; // Récupère l'ID de l'onglet à partir de l'attribut data-tab
-            showTab(tabId);
+        const tabId = this.dataset.tab; // Récupère l'ID de l'onglet à partir de l'attribut data-tab
+        showTab(tabId);
         });
     });
 
