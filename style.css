@@ -1,0 +1,358 @@
+/* Variables CSS pour un thème cohérent */
+:root {
+    --primary-color: #2C3E50; /* Bleu foncé/Gris acier, couleur principale */
+    --secondary-color: #3498DB; /* Bleu éclatant, couleur d'accent */
+    --accent-color: #E74C3C; /* Rouge brique/sécurité, pour les mises en évidence */
+    --text-light: #ECF0F1; /* Texte clair pour les fonds sombres */
+    --text-dark: #2C3E50; /* Texte foncé pour les fonds clairs */
+    --bg-light: #F8F9FA; /* Fond très clair */
+    --bg-medium: #EFF2F5; /* Fond légèrement grisé */
+    --border-color: #DDE2E7; /* Couleur des bordures */
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.2);
+    --transition-speed: 0.3s;
+}
+
+/* Styles de base */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    scroll-behavior: smooth; /* Défilement doux vers les ancres */
+}
+
+/* En-tête */
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-light);
+    padding: 60px 0;
+    text-align: center;
+    box-shadow: 0 6px 12px var(--shadow-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
+}
+
+header p {
+    font-size: 1.3em;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+/* Effet visuel dans l'en-tête (grille de chantier) */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Construction_Site_Grid_Pattern.svg/1200px-Construction_Site_Grid_Pattern.svg.png') repeat; /* Motif de grille technique */
+    background-size: 50px;
+    opacity: 0.05;
+    z-index: 0;
+}
+
+/* Barre de navigation (Onglets) */
+nav.tabs-nav {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 3px 6px var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav.tabs-nav .tab-link {
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 12px 25px;
+    margin: 0 8px;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    border-radius: 5px;
+    font-weight: 500;
+    display: inline-block;
+    cursor: pointer;
+    text-transform: uppercase; /* Texte en majuscules pour un look plus pro */
+    letter-spacing: 1px; /* Espacement des lettres */
+}
+
+nav.tabs-nav .tab-link:hover,
+nav.tabs-nav .tab-link.active {
+    background-color: var(--secondary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Ombre légère au survol/actif */
+}
+
+/* Conteneur principal */
+.container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Sections des années (Onglets de contenu) */
+section.tab-content {
+    min-height: calc(100vh - 180px); /* Hauteur minimale pour que la section soit en "plein écran" */
+    display: none;
+    position: relative;
+    background-size: cover;
+    background-position: center center; /* Centrer l'image */
+    background-attachment: fixed; /* L'image de fond reste fixe au défilement */
+    color: var(--text-light);
+    padding: 60px 20px;
+    transition: opacity 0.6s ease-in-out; /* Transition plus longue pour l'apparition */
+    opacity: 0;
+    display: flex; /* Utilisation de flexbox pour centrer le content-wrapper */
+    align-items: center; /* Centrage vertical */
+    justify-content: center; /* Centrage horizontal */
+}
+
+section.tab-content.active {
+    display: flex; /* Changer à flex pour l'affichage */
+    opacity: 1;
+}
+
+/* Overlay pour le texte lisible sur l'image de fond */
+section.tab-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65); /* Overlay plus sombre pour meilleure lisibilité sur fonds détaillés */
+    z-index: 1;
+}
+
+/* Wrapper pour le contenu des sections afin qu'il soit centré et lisible */
+.content-wrapper {
+    position: relative;
+    z-index: 2; /* Au-dessus de l'overlay */
+    width: 90%;
+    max-width: 1200px; /* Limite la largeur du contenu interne */
+    margin: 0 auto; /* Centre le contenu interne */
+    background-color: rgba(255, 255, 255, 0.15); /* Légère boîte transparente pour le contenu */
+    padding: 40px; /* Plus de padding */
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4); /* Ombre plus prononcée */
+    backdrop-filter: blur(5px); /* Effet de flou sur le fond derrière le wrapper */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure légère et transparente */
+}
+
+/* Images de fond spécifiques pour chaque section (Grandes Résolutions) */
+#annee1 {
+/* Première Année: Dessins de plans, compas, crayons */
+background-image: url('https://images.unsplash.com/photo-1582213197609-b6cb077d8a6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHw1NXx8YXJjaGl0ZWN0dXJlJTIwcGxhbnN8ZW58MHx8fHwxNzE3NzEzNTI5fDA&ixlib=rb-4.0.3&q=80&w=1080');
+}
+
+#annee2 {
+/* Deuxième Année: Chantier de bâtiment (construction verticale) */
+background-image: url('https://images.unsplash.com/photo-1502094246067-15d781b2a9d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHw1fHxtb2Rlcm4lMjBidWlsZGluZyUyMGNvbnN0cnVjdGlvbnxlbnwwfHx8fDE3MTc3MTM0Mzh8MA&ixlib=rb-4.0.3&q=80&w=1080');
+}
+
+#annee3 {
+/* Troisième Année: Chantiers de route / Infrastructures routières */
+background-image: url('https://images.unsplash.com/photo-1549429402-b06ce2703874?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHw0OXx8cm9hZCUyMGNvbnN0cnVjdGlvbnxlbnwwfHx8fDE3MTc3MTM1NzJ8MA&ixlib=rb-4.0.3&q=80&w=1080');
+}
+
+/* Titres des sections */
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--accent-color);
+    border-bottom: 3px solid var(--secondary-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    font-size: 2.8em; /* Titres un peu plus grands */
+    display: flex;
+    align-items: center;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Ombre plus visible pour les titres */
+}
+
+h2 i {
+    margin-right: 15px;
+    color: var(--text-light);
+    font-size: 1.2em; /* Icônes plus grandes */
+    background-color: var(--secondary-color);
+    padding: 12px; /* Plus de padding pour les icônes rondes */
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3); /* Ombre sur les icônes */
+}
+
+p {
+    margin-bottom: 25px; /* Plus d'espace sous les paragraphes */
+    font-size: 1.15em; /* Texte un peu plus grand */
+}
+
+/* Liste des épreuves (CSS Grid) */
+.subject-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Cartes légèrement plus grandes */
+    gap: 25px; /* Plus d'espacement entre les cartes */
+}
+
+.subject-item {
+    background-color: rgba(255, 255, 255, 0.98); /* Presque opaque pour une lisibilité maximale */
+    padding: 30px; /* Plus de padding interne */
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15); /* Ombre plus douce */
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 6px solid var(--secondary-color); /* Bordure supérieure plus épaisse */
+    color: var(--text-dark);
+}
+
+.subject-item:hover {
+    transform: translateY(-7px); /* Soulèvement plus prononcé */
+    box-shadow: 0 12px 30px var(--shadow-medium); /* Ombre plus visible au survol */
+    border-color: var(--accent-color); /* Bordure change de couleur au survol */
+}
+
+.subject-item strong {
+    font-size: 1.3em; /* Titre de matière plus grand */
+    color: var(--primary-color);
+    margin-bottom: 12px;
+    display: block;
+}
+
+.subject-item span {
+    font-size: 1em; /* Détail de l'épreuve légèrement plus grand */
+    color: #666;
+    margin-bottom: 18px;
+    display: block;
+}
+
+.subject-item .links {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.subject-item a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Plus d'espacement pour les icônes */
+    padding: 12px 18px; /* Plus de padding pour les boutons */
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    white-space: nowrap;
+    font-size: 1em; /* Taille de police pour les liens */
+    text-transform: uppercase; /* Texte des liens en majuscules */
+}
+
+.subject-item a:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.subject-item a i {
+    font-size: 1.2em; /* Icônes dans les liens plus grandes */
+}
+
+/* Pied de page */
+footer {
+    text-align: center;
+    padding: 40px; /* Plus de padding au pied de page */
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    margin-top: 0;
+    box-shadow: 0 -5px 15px var(--shadow-medium);
+    font-size: 1em; /* Texte du pied de page légèrement plus grand */
+    background-image: url('https://raw.githubusercontent.com/Vianney-maker-creator/Banque_d-preuves/main/footer_pattern.png'); /* Exemple de motif pour le pied de page */
+    background-size: 100px;
+    opacity: 0.95; /* Légèrement plus opaque */
+}
+
+footer p {
+    margin: 8px 0; /* Plus d'espace entre les lignes */
+}
+
+footer a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color var(--transition-speed) ease;
+}
+
+footer a:hover {
+    color: var(--text-light); /* Changement de couleur au survol */
+    text-decoration: underline;
+}
+
+/* Styles responsives */
+@media (max-width: 1200px) {
+    .content-wrapper {
+        padding: 30px;
+    }
+    .subject-list {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    header h1 { font-size: 3em; }
+    header p { font-size: 1.1em; }
+    nav.tabs-nav .tab-link { padding: 10px 20px; margin: 0 5px; }
+    h2 { font-size: 2.2em; }
+    .content-wrapper { padding: 25px; }
+    section.tab-content { min-height: calc(100vh - 160px); }
+    .subject-list {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    header { padding: 40px 0; }
+    header h1 { font-size: 2.5em; }
+    header p { font-size: 1em; }
+    nav.tabs-nav { flex-wrap: wrap; justify-content: center; padding: 10px 0; }
+    nav.tabs-nav .tab-link { flex-basis: 45%; margin: 5px; padding: 10px; }
+    h2 { font-size: 1.8em; }
+    h2 i { font-size: 1em; padding: 10px; }
+    .subject-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .subject-item { padding: 20px; }
+    .subject-item .links { flex-direction: column; gap: 8px; }
+    .subject-item a { width: 100%; justify-content: center; }
+    .content-wrapper { padding: 15px; }
+    section.tab-content { min-height: calc(100vh - 140px); }
+}
+
+@media (max-width: 480px) {
+    header h1 { font-size: 2em; }
+    header p { font-size: 0.9em; }
+    h2 { font-size: 1.6em; }
+    h2 i { margin-right: 10px; padding: 8px; font-size: 0.9em; }
+    nav.tabs-nav .tab-link { flex-basis: 80%; }
+}
