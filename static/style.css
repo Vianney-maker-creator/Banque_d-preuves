@@ -59,7 +59,7 @@ header::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Construction_Site_Grid_Pattern.svg/1200px-Construction_Site_Grid_Pattern.svg.png') repeat; /* Exemple de motif de grille */
+    background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Construction_Site_Grid_Pattern.svg/1200px-Construction_Site_Grid_Pattern.svg.png') repeat; /* Motif de grille technique */
     background-size: 50px;
     opacity: 0.05;
     z-index: 0;
@@ -86,7 +86,9 @@ nav.tabs-nav .tab-link {
     border-radius: 5px;
     font-weight: 500;
     display: inline-block;
-    cursor: pointer; /* Indique que c'est cliquable */
+    cursor: pointer;
+    text-transform: uppercase; /* Texte en majuscules pour un look plus pro */
+    letter-spacing: 1px; /* Espacement des lettres */
 }
 
 nav.tabs-nav .tab-link:hover,
@@ -94,34 +96,38 @@ nav.tabs-nav .tab-link.active {
     background-color: var(--secondary-color);
     color: white;
     transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Ombre légère au survol/actif */
 }
 
 /* Conteneur principal */
 .container {
-    width: 100%; /* Le conteneur prend toute la largeur pour les sections pleine écran */
-    max-width: none; /* Pas de max-width pour le conteneur principal */
-    margin: 0; /* Pas de marge pour le conteneur principal */
+    width: 100%;
+    max-width: none;
+    margin: 0;
     padding: 0;
-    overflow: hidden; /* Important pour gérer les débordements des sections */
+    overflow: hidden;
 }
 
 /* Sections des années (Onglets de contenu) */
 section.tab-content {
-    min-height: calc(100vh - 180px); /* Hauteur minimale pour que la section soit en plein écran (hauteur_viewport - hauteur_header - hauteur_footer) */
-    display: none; /* Masqué par défaut */
+    min-height: calc(100vh - 180px); /* Hauteur minimale pour que la section soit en "plein écran" */
+    display: none;
     position: relative;
     background-size: cover;
-    background-position: center;
+    background-position: center center; /* Centrer l'image */
     background-attachment: fixed; /* L'image de fond reste fixe au défilement */
-    color: var(--text-light); /* Texte clair sur les fonds sombres */
-    padding: 60px 20px; /* Padding pour le contenu à l'intérieur */
-    transition: opacity 0.5s ease-in-out; /* Transition pour l'apparition */
-    opacity: 0; /* Pour l'animation d'apparition */
+    color: var(--text-light);
+    padding: 60px 20px;
+    transition: opacity 0.6s ease-in-out; /* Transition plus longue pour l'apparition */
+    opacity: 0;
+    display: flex; /* Utilisation de flexbox pour centrer le content-wrapper */
+    align-items: center; /* Centrage vertical */
+    justify-content: center; /* Centrage horizontal */
 }
 
 section.tab-content.active {
-    display: block; /* Visible si actif */
-    opacity: 1; /* Rendu visible */
+    display: flex; /* Changer à flex pour l'affichage */
+    opacity: 1;
 }
 
 /* Overlay pour le texte lisible sur l'image de fond */
@@ -132,7 +138,7 @@ section.tab-content::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Overlay plus sombre pour meilleure lisibilité */
+    background-color: rgba(0, 0, 0, 0.65); /* Overlay plus sombre pour meilleure lisibilité sur fonds détaillés */
     z-index: 1;
 }
 
@@ -143,50 +149,56 @@ section.tab-content::before {
     width: 90%;
     max-width: 1200px; /* Limite la largeur du contenu interne */
     margin: 0 auto; /* Centre le contenu interne */
-    background-color: rgba(255, 255, 255, 0.1); /* Légère boîte transparente pour le contenu */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    background-color: rgba(255, 255, 255, 0.15); /* Légère boîte transparente pour le contenu */
+    padding: 40px; /* Plus de padding */
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4); /* Ombre plus prononcée */
+    backdrop-filter: blur(5px); /* Effet de flou sur le fond derrière le wrapper */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure légère et transparente */
 }
 
-/* Images de fond spécifiques pour chaque section */
+/* Images de fond spécifiques pour chaque section (Grandes Résolutions) */
 #annee1 {
-background-image: url('https://images.pexels.com/photos/1709003/pexels-photo-1709003.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Ex: Plans de construction */
+/* Première Année: Dessins de plans, compas, crayons */
+background-image: url('https://images.unsplash.com/photo-1582213197609-b6cb077d8a6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHw1NXx8YXJjaGl0ZWN0dXJlJTIwcGxhbnN8ZW58MHx8fHwxNzE3NzEzNTI5fDA&ixlib=rb-4.0.3&q=80&w=1080');
 }
 
 #annee2 {
-background-image: url('https://images.pexels.com/photos/2240767/pexels-photo-2240767.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Ex: Chantier avec grue */
+/* Deuxième Année: Chantier de bâtiment (construction verticale) */
+background-image: url('https://images.unsplash.com/photo-1502094246067-15d781b2a9d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHw1fHxtb2Rlcm4lMjBidWlsZGluZyUyMGNvbnN0cnVjdGlvbnxlbnwwfHx8fDE3MTc3MTM0Mzh8MA&ixlib=rb-4.0.3&q=80&w=1080');
 }
 
 #annee3 {
-background-image: url('https://images.pexels.com/photos/1598377/pexels-photo-1598377.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Ex: Vue aérienne de construction */
+/* Troisième Année: Chantiers de route / Infrastructures routières */
+background-image: url('https://images.unsplash.com/photo-1549429402-b06ce2703874?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHw0OXx8cm9hZCUyMGNvbnN0cnVjdGlvbnxlbnwwfHx8fDE3MTc3MTM1NzJ8MA&ixlib=rb-4.0.3&q=80&w=1080');
 }
 
 /* Titres des sections */
 h2 {
     font-family: 'Montserrat', sans-serif;
-    color: var(--accent-color); /* Rouge éclatant */
+    color: var(--accent-color);
     border-bottom: 3px solid var(--secondary-color);
     padding-bottom: 20px;
     margin-bottom: 30px;
-    font-size: 2.5em;
+    font-size: 2.8em; /* Titres un peu plus grands */
     display: flex;
     align-items: center;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Ombre plus visible pour les titres */
 }
 
 h2 i {
     margin-right: 15px;
     color: var(--text-light);
-    font-size: 1.1em;
+    font-size: 1.2em; /* Icônes plus grandes */
     background-color: var(--secondary-color);
-    padding: 10px;
+    padding: 12px; /* Plus de padding pour les icônes rondes */
     border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3); /* Ombre sur les icônes */
 }
 
 p {
-    margin-bottom: 20px;
-    font-size: 1.1em;
+    margin-bottom: 25px; /* Plus d'espace sous les paragraphes */
+    font-size: 1.15em; /* Texte un peu plus grand */
 }
 
 /* Liste des épreuves (CSS Grid) */
@@ -194,46 +206,47 @@ p {
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Cartes légèrement plus grandes */
+    gap: 25px; /* Plus d'espacement entre les cartes */
 }
 
 .subject-item {
-    background-color: rgba(255, 255, 255, 0.95); /* Fond blanc semi-transparent */
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    background-color: rgba(255, 255, 255, 0.98); /* Presque opaque pour une lisibilité maximale */
+    padding: 30px; /* Plus de padding interne */
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15); /* Ombre plus douce */
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-top: 5px solid var(--secondary-color);
-    color: var(--text-dark); /* S'assure que le texte est sombre sur le fond clair de l'élément */
+    border-top: 6px solid var(--secondary-color); /* Bordure supérieure plus épaisse */
+    color: var(--text-dark);
 }
 
 .subject-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px var(--shadow-medium);
+    transform: translateY(-7px); /* Soulèvement plus prononcé */
+    box-shadow: 0 12px 30px var(--shadow-medium); /* Ombre plus visible au survol */
+    border-color: var(--accent-color); /* Bordure change de couleur au survol */
 }
 
 .subject-item strong {
-    font-size: 1.2em;
+    font-size: 1.3em; /* Titre de matière plus grand */
     color: var(--primary-color);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     display: block;
 }
 
 .subject-item span {
-    font-size: 0.95em;
-    color: #555;
-    margin-bottom: 15px;
+    font-size: 1em; /* Détail de l'épreuve légèrement plus grand */
+    color: #666;
+    margin-bottom: 18px;
     display: block;
 }
 
 .subject-item .links {
     display: flex;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 12px;
+    margin-top: 20px;
     flex-wrap: wrap;
 }
 
@@ -243,13 +256,14 @@ p {
     font-weight: bold;
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    padding: 10px 15px;
+    gap: 8px; /* Plus d'espacement pour les icônes */
+    padding: 12px 18px; /* Plus de padding pour les boutons */
     border: 2px solid var(--secondary-color);
     border-radius: 8px;
     transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
     white-space: nowrap;
-    font-size: 0.9em;
+    font-size: 1em; /* Taille de police pour les liens */
+    text-transform: uppercase; /* Texte des liens en majuscules */
 }
 
 .subject-item a:hover {
@@ -259,49 +273,61 @@ p {
 }
 
 .subject-item a i {
-    font-size: 1.1em;
+    font-size: 1.2em; /* Icônes dans les liens plus grandes */
 }
 
 /* Pied de page */
 footer {
     text-align: center;
-    padding: 30px;
+    padding: 40px; /* Plus de padding au pied de page */
     background-color: var(--primary-color);
     color: var(--text-light);
-    margin-top: 0; /* Pas de marge supérieure car les sections remplissent l'écran */
+    margin-top: 0;
     box-shadow: 0 -5px 15px var(--shadow-medium);
-    font-size: 0.95em;
+    font-size: 1em; /* Texte du pied de page légèrement plus grand */
     background-image: url('https://raw.githubusercontent.com/Vianney-maker-creator/Banque_d-preuves/main/footer_pattern.png'); /* Exemple de motif pour le pied de page */
     background-size: 100px;
-    opacity: 0.9;
+    opacity: 0.95; /* Légèrement plus opaque */
 }
 
 footer p {
-    margin: 5px 0;
+    margin: 8px 0; /* Plus d'espace entre les lignes */
 }
 
 footer a {
     color: var(--secondary-color);
     text-decoration: none;
     font-weight: bold;
+    transition: color var(--transition-speed) ease;
 }
 
 footer a:hover {
+    color: var(--text-light); /* Changement de couleur au survol */
     text-decoration: underline;
 }
 
 /* Styles responsives */
+@media (max-width: 1200px) {
+    .content-wrapper {
+        padding: 30px;
+    }
+    .subject-list {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+}
+
 @media (max-width: 992px) {
     header h1 { font-size: 3em; }
     header p { font-size: 1.1em; }
     nav.tabs-nav .tab-link { padding: 10px 20px; margin: 0 5px; }
-    h2 { font-size: 2em; }
+    h2 { font-size: 2.2em; }
+    .content-wrapper { padding: 25px; }
+    section.tab-content { min-height: calc(100vh - 160px); }
     .subject-list {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 15px;
     }
-    .content-wrapper { padding: 20px; }
-    section.tab-content { min-height: calc(100vh - 160px); }
 }
 
 @media (max-width: 768px) {
@@ -311,6 +337,7 @@ footer a:hover {
     nav.tabs-nav { flex-wrap: wrap; justify-content: center; padding: 10px 0; }
     nav.tabs-nav .tab-link { flex-basis: 45%; margin: 5px; padding: 10px; }
     h2 { font-size: 1.8em; }
+    h2 i { font-size: 1em; padding: 10px; }
     .subject-list {
         grid-template-columns: 1fr;
         gap: 15px;
